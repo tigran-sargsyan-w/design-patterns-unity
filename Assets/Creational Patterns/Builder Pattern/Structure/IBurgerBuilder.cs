@@ -2,9 +2,12 @@
 {
     public interface IBurgerBuilder
     {
-        void AddPart1();
-        void AddPart2();
-        void AddPart3();
-        Product GetProduct();
+        void Cook(string meatType);
+        void AddMustard();
+        void AddKetchup();
+        void AddMayo();
+        void AddOnion();
+        void AddPickle();
+        Product GetBurger();
     }
 }

@@ -2,24 +2,39 @@
 {
     public class BurgerBuilder : IBurgerBuilder
     {
-        private Burger burger = new Burger();
-
-        public void AddPart1()
+        private Burger burger;
+        
+        public void Cook(string meatType)
         {
-            burger.Add("Generals");
+            burger = new Burger(meatType);
         }
 
-        public void AddPart2()
+        public void AddMustard()
         {
-            burger.Add("Chicken");
+            burger.Add("Mustard");
         }
 
-        public void AddPart3()
+        public void AddKetchup()
+        {
+            burger.Add("Ketchup");
+        }
+
+        public void AddMayo()
+        {
+            burger.Add("Mayo");
+        }
+
+        public void AddOnion()
         {
             burger.Add("Onion");
         }
 
-        public Product GetProduct()
+        public void AddPickle()
+        {
+            burger.Add("Pickle");
+        }
+
+        public Product GetBurger()
         {
             return burger;
         }

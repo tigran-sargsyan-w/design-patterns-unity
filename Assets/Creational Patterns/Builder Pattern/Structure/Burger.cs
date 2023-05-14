@@ -10,8 +10,13 @@ namespace BuilderPattern
         public override string Name { get; }
         public override string Type { get; }
         public override int Price { get; }
-        
 
+        public Burger(string meatType)
+        {
+            Name = "Burger";
+            Type = meatType;
+        }
+        
         public void Add(string part)
         {
             parts.Add(part);
@@ -19,8 +24,9 @@ namespace BuilderPattern
 
         public void Show()
         {
-            Debug.Log("\nBurger Parts -------");
-            foreach (string part in parts) Debug.Log(part);
+            string partsText = $"Your <color=red>{Type}: </color> Burger has an extra:  ";
+            foreach (var part in parts) partsText += part + ", ";
+            Debug.Log(partsText);
         }
     }
 }
