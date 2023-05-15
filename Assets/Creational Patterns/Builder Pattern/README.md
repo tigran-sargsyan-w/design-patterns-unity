@@ -1,21 +1,21 @@
-# Abstract Factory
+# Builder Pattern
 ## *Intent*
-Abstract Factory is a creational design pattern that lets you produce families of related objects without specifying their concrete classes.
+Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
-![Abstract Factory](https://refactoring.guru/images/patterns/diagrams/abstract-factory/structure.png)
+![Builder Pattern](https://refactoring.guru/images/patterns/diagrams/builder/structure.png)
 
 :mag: 
 ## *Applicability*
-Use the Abstract Factory when your code needs to work with various families of related products, but you don’t want it to depend on the concrete classes of those products—they might be unknown beforehand or you simply want to allow for future extensibility.
-The Abstract Factory provides you with an interface for creating objects from each class of the product family. As long as your code creates objects via this interface, you don’t have to worry about creating the wrong variant of a product which doesn’t match the products already created by your app.
+Use the Builder pattern to get rid of a “telescopic constructor”.
 
  :clipboard: 
 ## *How to implement*
-1. Map out a matrix of distinct product types versus variants of these products.
-2. Declare abstract product interfaces for all product types. Then make all concrete product classes implement these interfaces.
-3. Declare the abstract factory interface with a set of creation methods for all abstract products.
-4. Implement a set of concrete factory classes, one for each product variant.
-5. Create factory initialization code somewhere in the app. It should instantiate one of the concrete factory classes, depending on the application configuration or the current environment. Pass this factory object to all classes that construct products.
-6. Scan through the code and find all direct calls to product constructors. Replace them with calls to the appropriate creation method on the factory object.
-
+1. Make sure that you can clearly define the common construction steps for building all available product representations. Otherwise, you won’t be able to proceed with implementing the pattern.
+2. Declare these steps in the base builder interface.
+3. Create a concrete builder class for each of the product representations and implement their construction steps.
+4. Think about creating a director class. It may encapsulate various ways to construct a product using the same builder object.
+5. The client code creates both the builder and the director objects. Before construction starts, the client must pass a builder object to the director. Usually, the client does this only once, via parameters of the director’s constructor. The director uses the builder object in all further construction. There’s an alternative approach, where the builder is passed directly to the construction method of the director.
+6. The construction result can be obtained directly from the director only if all products follow the same interface. Otherwise, the client should fetch the result from the builder.
+7. The client should be aware of the used builder’s specifics to fetch results correctly.
+8. It’s OK to call the building steps directly from the client code only when constructing simple products.
 
